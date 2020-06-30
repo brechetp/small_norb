@@ -48,7 +48,7 @@ class SmallNORBDataset:
     def __init__(self, dataset_root):
         """
         Initialize small NORB dataset wrapper
-        
+
         Parameters
         ----------
         dataset_root: str
@@ -87,7 +87,7 @@ class SmallNORBDataset:
     def explore_random_examples(self, dataset_split):
         """
         Visualize random examples for dataset exploration purposes
-        
+
         Parameters
         ----------
         dataset_split: str
@@ -107,12 +107,12 @@ class SmallNORBDataset:
     def export_to_jpg(self, export_dir):
         """
         Export all dataset images to `export_dir` directory
-        
+
         Parameters
         ----------
         export_dir: str
             Path to export directory (which is created if nonexistent)
-            
+
         Returns
         -------
         None
@@ -136,11 +136,11 @@ class SmallNORBDataset:
                     scipy.misc.imsave(image_lt_path, norb_example.image_lt)
                     scipy.misc.imsave(image_rt_path, norb_example.image_rt)
             print('Done.')
-    
+
     def group_dataset_by_category_and_instance(self, dataset_split):
         """
         Group small NORB dataset for (category, instance) key
-        
+
         Parameters
         ----------
         dataset_split: str
@@ -165,10 +165,10 @@ class SmallNORBDataset:
     def _fill_data_structures(self, dataset_split):
         """
         Fill SmallNORBDataset data structures for a certain `dataset_split`.
-        
+
         This means all images, category and additional information are loaded from binary
         files of the current split.
-        
+
         Parameters
         ----------
         dataset_split: str
@@ -200,7 +200,7 @@ class SmallNORBDataset:
         Parameters
         ----------
         magic_number: tuple
-            First 4 bytes read from small NORB files 
+            First 4 bytes read from small NORB files
 
         Returns
         -------
@@ -219,7 +219,7 @@ class SmallNORBDataset:
     def _parse_small_NORB_header(file_pointer):
         """
         Parse header of small NORB binary file
-        
+
         Parameters
         ----------
         file_pointer: BufferedReader
@@ -248,7 +248,7 @@ class SmallNORBDataset:
     def _parse_NORB_cat_file(file_path):
         """
         Parse small NORB category file
-        
+
         Parameters
         ----------
         file_path: str
@@ -306,12 +306,13 @@ class SmallNORBDataset:
 
                 examples[i] = image
 
+
         return examples
 
     @staticmethod
     def _parse_NORB_info_file(file_path):
         """
-        Parse small NORB information file
+        Parse small NORB information ile
 
         Parameters
         ----------
@@ -322,9 +323,9 @@ class SmallNORBDataset:
         -------
         examples: ndarray
             Ndarray of shape (24300,4) containing the additional info of each example.
-            
+
              - column 1: the instance in the category (0 to 9)
-             - column 2: the elevation (0 to 8, which mean cameras are 30, 35,40,45,50,55,60,65,70 
+             - column 2: the elevation (0 to 8, which mean cameras are 30, 35,40,45,50,55,60,65,70
                degrees from the horizontal respectively)
              - column 3: the azimuth (0,2,4,...,34, multiply by 10 to get the azimuth in degrees)
              - column 4: the lighting condition (0 to 5)
